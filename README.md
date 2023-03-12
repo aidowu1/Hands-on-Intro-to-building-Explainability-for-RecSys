@@ -1,4 +1,4 @@
-# Hands on Intro to building-Explainability for Recomendation Systems
+# Hands on Intro to building Explainability for Recomendation Systems
 Hands on Intro to building Explainable RecSys models (Master repo)
 
 ## Abstract
