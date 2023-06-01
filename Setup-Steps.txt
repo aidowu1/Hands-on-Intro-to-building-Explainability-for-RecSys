@@ -1,0 +1,38 @@
+List of steps to setup demo code
+================================
+
+1) Start a windows or linux command line console and create your working directory (note, that I used a windows OS)
+
+2) Pull the code to your local machine working directory or Colab from Github:
+   => git clone https://github.com/aidowu1/Hands-on-Intro-to-building-Explainability-for-RecSys.git
+
+3) Change directory to root location of the code:
+   => cd Hands-on-Intro-to-building-Explainability-for-RecSys
+
+4) Create a conda virtual environment:
+   => conda create -n pydata2023_recsys python=3.7
+   
+5) Activate the virtual environment:
+   => conda activate pydata2023_recsys
+   
+6) Install the dependencies for Recoxplainer via PIP:
+   => pip install -r requirements.txt
+   
+7) Install dependencies for LIME and MyFM:
+   => pip install myfm lime
+   
+8) Install pandas profilling tool for EDA:
+   pip install pandas-profiling
+   
+9) Register your created conda virtual environment i.e. 'pydata2023_recsys' as jupyer noebook kernel:
+   => python -m ipykernel install --user --name=pydata2023_recsys
+   
+10) Spin up a jupyer notebook instance:
+    => jupyter notebook
+   
+11) Navigate to the folder location of the demo noebooks and select your desired demo:
+    => <YOUR WORKING DIRECTORY>\Hands-on-Intro-to-building-Explainability-for-RecSys\ExplainableRecsys\Code\Demos\Notebooks
+	
+12) For each notebook set the kernel to: "pydata2023_recsys"
+	
+	
