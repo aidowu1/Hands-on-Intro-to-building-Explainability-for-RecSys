@@ -19,9 +19,14 @@ class Explainer:
         with tqdm(total=self.recommendations.shape[0], desc="Computing explanations: ") as pbar:
 
             for _, row in self.recommendations.iterrows():
-                explanation_per_user, explanation_score_per_user = self.explain_recommendation_to_user(
+                explanation_results = self.explain_recommendation_to_user(
                                                                         int(row.userId),
                                                                         int(row.itemId))
+                if isinstance(explanation_results, dict):
+                    explanation_per_user = explanation_results
+                    explanation_score_per_user = None
+                else:
+                    explanation_per_user, explanation_score_per_user = explanation_results
                 explanations.append(explanation_per_user)
                 explanation_score.append(explanation_score_per_user)
                 pbar.update()

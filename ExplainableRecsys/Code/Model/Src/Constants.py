@@ -64,3 +64,7 @@ N_LOCAL_SAMPLES = 2000
 
 # LIME regression prediction (R2 Score) threshold
 R2_SCORE_THRESHOLD = 0.2
+
+# Number of sample recommendation explanations for ALS explanations
+# If the value is None then all the recommendations samples will be explained
+N_RECOMMENDATION_SAMPLES_FOR_EXPLANATION = 200

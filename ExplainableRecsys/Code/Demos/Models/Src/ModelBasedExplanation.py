@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-from typing import Optional, Tuple, Any, Dict, Union
+from typing import Optional, Tuple, Any, Dict, Union, Optional
 from abc import ABC, abstractmethod
 from pprint import pprint
 
@@ -11,7 +11,7 @@ from Code.ThirdParty.recoxplainer_master.recoxplainer.recommender import Recomme
 from Code.ThirdParty.recoxplainer_master.recoxplainer.evaluator import Evaluator
 from Code.DataAccessLayer.Src.DataProvider import DataReader
 from Code.DataAccessLayer.Src.DataSplitter import Splitter
-import Code.DataAccessLayer.Src.Constants as c
+import Code.Model.Src.Constants as c
 from Code.Utils.Src.Enums import ExplanationType
 from Code.Utils.Src.Logging import Logger
 from Code.Utils.Src.Utils import Helpers
@@ -123,7 +123,7 @@ class ModelBasedExplainerDemo(ABC):
         explanation_text = [x.upper() for x in explanation_type.name.split("_")]
         self.logger.info(f"Explanations for {explanation_text[0]} {explanation_text[1].lower()}")
 
-    def runDemo(self):
+    def runDemo(self, n_recommendation_explanations: Optional[int] = None):
         """
         Runs the entire demo
         Produces results, namely:
@@ -134,12 +134,17 @@ class ModelBasedExplainerDemo(ABC):
         """
         train_metadata, test_df = self.preprocessMovielensDataset()
         self.fit(train_metadata)
+        self.logger.info("Matrix factorization computation of the user-item interaction matrix")
         self.computeRecommendations(self.model, train_metadata, test_df)
+        if n_recommendation_explanations:
+            self.recommendations_df = self.recommendations_df.sample(n_recommendation_explanations).copy()
         self.computeExplanations(train_metadata, self.explanation_type)
+        self.logger.info("Prettifying the explanations!")
+        best_explanations_df = Helpers.prettifyExplanations(self.explanations_df)
         return {
             "recommendations_df": self.recommendations_df,
             "recommendation_metrics": self.recommendation_metrics,
-            "explanations_df": self.explanations_df,
+            "explanations_df": best_explanations_df,
             "explanation_metrics": self.explanation_metrics
         }
 

@@ -137,7 +137,7 @@ class ALSExplainerDemoTest(ut.TestCase):
         error_msg = f"Invalid tests: Error testing function: {inspect.stack()[0][3]}()"
         als_explainer_demo = ALSExplainerDemo(ExplanationType.als_explainer)
         self.assertIsNotNone(als_explainer_demo, error_msg)
-        results = als_explainer_demo.runDemo()
+        results = als_explainer_demo.runDemo(n_recommendation_explanations=c.N_RECOMMENDATION_SAMPLES_FOR_EXPLANATION)
         self.assertIsNotNone(results, error_msg)
         recommendations_df = results["recommendations_df"]
         recommendation_metrics = results["recommendation_metrics"]
