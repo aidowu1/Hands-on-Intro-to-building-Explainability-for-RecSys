@@ -19,3 +19,6 @@ Specifically, the workshop will outline the following implementations:
 4.	Brief introduction to explainable recommendations using Knowledge Graph-based models
 5.	Review of the findings and conclusions
 
+## Pydata 2023 London Conference Youtube presentation (video)
+https://www.youtube.com/watch?v=FS8pBksh_aI
+
